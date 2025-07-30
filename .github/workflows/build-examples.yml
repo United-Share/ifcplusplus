@@ -1,0 +1,300 @@
+name: Build Examples
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+
+jobs:
+  build-console-examples:
+    name: Build Console Examples
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        build_type: [Release, Debug]
+        
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        
+    - name: Install dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          build-essential \
+          cmake \
+          ninja-build \
+          libboost-all-dev \
+          pkg-config
+          
+    - name: Install dependencies (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install cmake ninja boost pkg-config
+        
+    - name: Setup MSVC (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: ilammy/msvc-dev-cmd@v1
+      
+    - name: Create build directory
+      run: mkdir build
+      
+    - name: Configure CMake (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        cd build
+        cmake .. \
+          -G Ninja \
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+          -DBUILD_CONSOLE_APPLICATION=ON \
+          -DBUILD_VIEWER_APPLICATION=OFF \
+          -DCMAKE_INSTALL_PREFIX=install
+          
+    - name: Configure CMake (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd build
+        cmake .. `
+          -G "Visual Studio 17 2022" `
+          -A x64 `
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} `
+          -DBUILD_CONSOLE_APPLICATION=ON `
+          -DBUILD_VIEWER_APPLICATION=OFF `
+          -DCMAKE_INSTALL_PREFIX=install
+          
+    - name: Build console examples
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build_type }} --target CreateIfcWallAndWriteFile
+        cmake --build . --config ${{ matrix.build_type }} --target LoadFileExample
+        
+    - name: Test console examples (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        cd build
+        ls -la ${{ matrix.build_type }}/
+        file ${{ matrix.build_type }}/CreateIfcWallAndWriteFile || true
+        file ${{ matrix.build_type }}/LoadFileExample || true
+        
+    - name: Test console examples (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd build
+        dir ${{ matrix.build_type }}\
+        if (Test-Path "${{ matrix.build_type }}\CreateIfcWallAndWriteFile.exe") { Write-Host "CreateIfcWallAndWriteFile.exe found" }
+        if (Test-Path "${{ matrix.build_type }}\LoadFileExample.exe") { Write-Host "LoadFileExample.exe found" }
+        
+    - name: Upload console examples artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: console-examples-${{ matrix.os }}-${{ matrix.build_type }}
+        path: |
+          build/${{ matrix.build_type }}/CreateIfcWallAndWriteFile*
+          build/${{ matrix.build_type }}/LoadFileExample*
+        retention-days: 7
+
+  build-qt-viewer:
+    name: Build Qt Viewer Example
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        build_type: [Release]
+        
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        
+    - name: Install Qt6
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.5.0'
+        modules: 'qtbase qttools qtwidgets qtopengl'
+        
+    - name: Install dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          build-essential \
+          cmake \
+          ninja-build \
+          libboost-all-dev \
+          libopenscenegraph-dev \
+          libopenthreads-dev \
+          pkg-config \
+          mesa-common-dev \
+          libgl1-mesa-dev \
+          libglu1-mesa-dev
+          
+    - name: Install OpenSceneGraph (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        # Download and install vcpkg
+        git clone https://github.com/Microsoft/vcpkg.git
+        cd vcpkg
+        .\bootstrap-vcpkg.bat
+        .\vcpkg install openscenegraph:x64-windows
+        echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}\vcpkg\scripts\buildsystems\vcpkg.cmake" >> $env:GITHUB_ENV
+        
+    - name: Setup MSVC (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: ilammy/msvc-dev-cmd@v1
+      
+    - name: Create build directory
+      run: mkdir build
+      
+    - name: Configure CMake (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        cd build
+        cmake .. \
+          -G Ninja \
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+          -DBUILD_CONSOLE_APPLICATION=ON \
+          -DBUILD_VIEWER_APPLICATION=ON \
+          -DCMAKE_INSTALL_PREFIX=install \
+          -DQT_DIR=${{ env.QT_ROOT_DIR }}
+          
+    - name: Configure CMake (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd build
+        cmake .. `
+          -G "Visual Studio 17 2022" `
+          -A x64 `
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} `
+          -DBUILD_CONSOLE_APPLICATION=ON `
+          -DBUILD_VIEWER_APPLICATION=ON `
+          -DCMAKE_INSTALL_PREFIX=install `
+          -DCMAKE_TOOLCHAIN_FILE=${{ env.CMAKE_TOOLCHAIN_FILE }} `
+          -DQT_DIR=${{ env.QT_ROOT_DIR }}
+          
+    - name: Build Qt viewer example
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build_type }} --target SimpleViewerExampleQt
+        
+    - name: Upload Qt viewer artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: qt-viewer-${{ matrix.os }}-${{ matrix.build_type }}
+        path: |
+          build/${{ matrix.build_type }}/SimpleViewerExampleQt*
+        retention-days: 7
+
+  build-json-renderer:
+    name: Build JSON Net Renderer
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        build_type: [Release]
+        
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        
+    - name: Install dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          build-essential \
+          cmake \
+          ninja-build \
+          libboost-all-dev \
+          pkg-config \
+          git
+          
+    - name: Install dependencies (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install cmake ninja boost pkg-config git
+        
+    - name: Setup MSVC (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: ilammy/msvc-dev-cmd@v1
+      
+    - name: Create build directory
+      run: mkdir build
+      
+    - name: Configure CMake (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        cd build
+        cmake .. \
+          -G Ninja \
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+          -DBUILD_CONSOLE_APPLICATION=ON \
+          -DBUILD_VIEWER_APPLICATION=OFF \
+          -DCMAKE_INSTALL_PREFIX=install
+          
+    - name: Configure CMake (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd build
+        cmake .. `
+          -G "Visual Studio 17 2022" `
+          -A x64 `
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} `
+          -DBUILD_CONSOLE_APPLICATION=ON `
+          -DBUILD_VIEWER_APPLICATION=OFF `
+          -DCMAKE_INSTALL_PREFIX=install
+          
+    - name: Build JSON Net Renderer
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build_type }} --target IfcJsonNetRenderer
+        
+    - name: Upload JSON renderer artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: json-renderer-${{ matrix.os }}-${{ matrix.build_type }}
+        path: |
+          build/${{ matrix.build_type }}/IfcJsonNetRenderer*
+        retention-days: 7
+
+  build-summary:
+    name: Build Summary
+    needs: [build-console-examples, build-qt-viewer, build-json-renderer]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Check build results
+      run: |
+        echo "Console Examples Build: ${{ needs.build-console-examples.result }}"
+        echo "Qt Viewer Build: ${{ needs.build-qt-viewer.result }}"
+        echo "JSON Renderer Build: ${{ needs.build-json-renderer.result }}"
+        
+        if [[ "${{ needs.build-console-examples.result }}" == "success" ]]; then
+          echo "✅ Console examples built successfully"
+        else
+          echo "❌ Console examples build failed"
+        fi
+        
+        if [[ "${{ needs.build-qt-viewer.result }}" == "success" ]]; then
+          echo "✅ Qt viewer built successfully"
+        else
+          echo "❌ Qt viewer build failed"
+        fi
+        
+        if [[ "${{ needs.build-json-renderer.result }}" == "success" ]]; then
+          echo "✅ JSON renderer built successfully"
+        else
+          echo "❌ JSON renderer build failed"
+        fi
