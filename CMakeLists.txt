@@ -1,5 +1,11 @@
-CMAKE_MINIMUM_REQUIRED (VERSION 3.6)
+CMAKE_MINIMUM_REQUIRED (VERSION 3.16)
 project(IfcPlusPlus)
+
+# Set CMake policies to avoid warnings
+cmake_policy(SET CMP0144 NEW)  # find_package uses upper-case <PACKAGENAME>_ROOT variables
+if(POLICY CMP0167)
+    cmake_policy(SET CMP0167 NEW)  # The FindBoost module is removed
+endif()
 
 # Set a default build type if none was specified https://blog.kitware.com/cmake-and-the-default-build-type/
 set(default_build_type "Release")

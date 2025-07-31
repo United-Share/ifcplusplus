@@ -1,6 +1,12 @@
-CMAKE_MINIMUM_REQUIRED (VERSION 3.7.2)
+CMAKE_MINIMUM_REQUIRED (VERSION 3.16)
 
 PROJECT(IfcJsonNetRenderer)
+
+# Set CMake policies to avoid warnings
+cmake_policy(SET CMP0144 NEW)  # find_package uses upper-case <PACKAGENAME>_ROOT variables
+if(POLICY CMP0167)
+    cmake_policy(SET CMP0167 NEW)  # The FindBoost module is removed
+endif()
 
 IF(NOT CMAKE_BUILD_TYPE)
    SET(CMAKE_BUILD_TYPE "Release")
@@ -36,6 +42,12 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(crow)
 
 # Fetch jsonnet header-only library
+# Disable jsonnet tests and utilities to avoid googletest dependency
+set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
+set(BUILD_JSONNET OFF CACHE BOOL "Build jsonnet executable" FORCE)
+set(BUILD_JSONNETFMT OFF CACHE BOOL "Build jsonnetfmt executable" FORCE)
+set(BUILD_STATIC_LIB ON CACHE BOOL "Build static library" FORCE)
+
 FetchContent_Declare(
     jsonnet
     GIT_REPOSITORY https://github.com/google/jsonnet.git
