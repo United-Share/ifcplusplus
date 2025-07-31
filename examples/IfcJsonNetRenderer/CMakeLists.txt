@@ -41,6 +41,11 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/google/jsonnet.git
     GIT_TAG v0.20.0
 )
+
+# Disable googletest for jsonnet to avoid download issues
+set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
+set(BUILD_GOOGLETEST OFF CACHE BOOL "Build googletest" FORCE)
+
 FetchContent_MakeAvailable(jsonnet)
 
 # Fetch nlohmann/json for JSON handling
