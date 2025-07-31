@@ -41,7 +41,10 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(crow)
 
-# Fetch jsonnet header-only library
+# Fetch jsonnet library with CMake compatibility fix
+# Set minimum policy version to handle older CMake versions in dependencies
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+
 # Disable jsonnet tests and utilities to avoid googletest dependency
 set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
 set(BUILD_JSONNET OFF CACHE BOOL "Build jsonnet executable" FORCE)
