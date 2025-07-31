@@ -45,32 +45,28 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(crow)
 
-# Handle jsonnet dependency with CMake compatibility workaround
-# Disable jsonnet tests and utilities to avoid googletest dependency
-set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
-set(BUILD_JSONNET OFF CACHE BOOL "Build jsonnet executable" FORCE)
-set(BUILD_JSONNETFMT OFF CACHE BOOL "Build jsonnetfmt executable" FORCE)
-set(BUILD_STATIC_LIB ON CACHE BOOL "Build static library" FORCE)
+# Temporarily disable jsonnet to avoid CMake compatibility issues
+# TODO: Re-enable jsonnet once CMake compatibility is resolved
+# For now, the application will work with basic JSON functionality via nlohmann/json
+option(ENABLE_JSONNET "Enable Jsonnet templating support" OFF)
 
-# Temporarily lower CMake requirements for external dependencies
-set(CMAKE_POLICY_DEFAULT_CMP0000 OLD)  # Allow older CMake versions in subdirectories
-
-FetchContent_Declare(
-    jsonnet
-    GIT_REPOSITORY https://github.com/google/jsonnet.git
-    GIT_TAG v0.20.0
-)
-
-# Download and configure jsonnet
-FetchContent_GetProperties(jsonnet)
-if(NOT jsonnet_POPULATED)
-    message(STATUS "Fetching jsonnet...")
-    FetchContent_Populate(jsonnet)
+if(ENABLE_JSONNET)
+    # Jsonnet support disabled due to CMake compatibility issues
+    message(STATUS "Jsonnet support is currently disabled due to CMake compatibility issues")
+    message(STATUS "Use -DENABLE_JSONNET=ON to attempt enabling it (may fail)")
     
-    # Manually add the subdirectory with relaxed CMake requirements
-    set(CMAKE_WARN_DEPRECATED OFF)  # Disable deprecation warnings for this subdirectory
-    add_subdirectory(${jsonnet_SOURCE_DIR} ${jsonnet_BINARY_DIR} EXCLUDE_FROM_ALL)
-    set(CMAKE_WARN_DEPRECATED ON)   # Re-enable warnings
+    # Disable jsonnet tests and utilities to avoid googletest dependency
+    set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
+    set(BUILD_JSONNET OFF CACHE BOOL "Build jsonnet executable" FORCE)
+    set(BUILD_JSONNETFMT OFF CACHE BOOL "Build jsonnetfmt executable" FORCE)
+    set(BUILD_STATIC_LIB ON CACHE BOOL "Build static library" FORCE)
+    
+    FetchContent_Declare(
+        jsonnet
+        GIT_REPOSITORY https://github.com/google/jsonnet.git
+        GIT_TAG v0.20.0
+    )
+    FetchContent_MakeAvailable(jsonnet)
 endif()
 
 # Fetch nlohmann/json for JSON handling
@@ -97,10 +93,15 @@ set_target_properties(IfcJsonNetRenderer PROPERTIES CXX_STANDARD 17)
 TARGET_LINK_LIBRARIES(IfcJsonNetRenderer 
     optimized IfcPlusPlus debug IfcPlusPlusd
     Crow::Crow
-    jsonnet_static
     nlohmann_json::nlohmann_json
     Threads::Threads
 )
+
+# Link jsonnet only if enabled
+if(ENABLE_JSONNET)
+    target_link_libraries(IfcJsonNetRenderer jsonnet_static)
+    target_compile_definitions(IfcJsonNetRenderer PRIVATE ENABLE_JSONNET)
+endif()
 
 TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
     PRIVATE
@@ -115,8 +116,12 @@ TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
     ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/Carve/src/common
     ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/Carve/build/src
     ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/glm
-    ${jsonnet_SOURCE_DIR}/include
 )
+
+# Add jsonnet include directory only if enabled
+if(ENABLE_JSONNET)
+    target_include_directories(IfcJsonNetRenderer PRIVATE ${jsonnet_SOURCE_DIR}/include)
+endif()
         
 INSTALL(
     TARGETS IfcJsonNetRenderer

@@ -1,87 +1,48 @@
 #pragma once
 
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <nlohmann/json.hpp>
-#include <libjsonnet.h>
 
 using json = nlohmann::json;
 
-/**
- * Jsonnet template renderer for IFC data
- */
+// Conditional compilation for jsonnet support
+#ifdef ENABLE_JSONNET
+#include <libjsonnet.h>
+#endif
+
 class JsonnetRenderer {
 public:
     JsonnetRenderer();
     ~JsonnetRenderer();
-
-    /**
-     * Render a Jsonnet template with IFC data
-     * @param template_content The Jsonnet template content
-     * @param ifc_data JSON data from IFC parser
-     * @param external_vars Additional variables to pass to template
-     * @return Rendered JSON output
-     */
-    json renderTemplate(const std::string& template_content, 
+    
+    // Render template with IFC data
+    json renderTemplate(const std::string& template_content,
                        const json& ifc_data,
-                       const std::map<std::string, std::string>& external_vars = {});
-
-    /**
-     * Load and render a Jsonnet template file
-     * @param template_file Path to the Jsonnet template file
-     * @param ifc_data JSON data from IFC parser
-     * @param external_vars Additional variables to pass to template
-     * @return Rendered JSON output
-     */
+                       const std::unordered_map<std::string, std::string>& external_vars = {});
+    
+    // Render template from file
     json renderTemplateFile(const std::string& template_file,
                            const json& ifc_data,
-                           const std::map<std::string, std::string>& external_vars = {});
-
-    /**
-     * Set import callback for Jsonnet includes
-     * @param import_callback Callback function for handling imports
-     */
-    void setImportCallback(JsonnetImportCallback* import_callback);
-
-    /**
-     * Add external variable
-     * @param key Variable name
-     * @param value Variable value
-     */
+                           const std::unordered_map<std::string, std::string>& external_vars = {});
+    
+    // Add external variable
     void addExternalVar(const std::string& key, const std::string& value);
-
-    /**
-     * Clear all external variables
-     */
+    
+    // Clear external variables
     void clearExternalVars();
-
-    /**
-     * Create a default template for IFC visualization
-     * @return Default Jsonnet template string
-     */
+    
+    // Static template getters
     static std::string getDefaultIfcTemplate();
-
-    /**
-     * Create a template for specific IFC element types
-     * @param element_type The IFC element type (e.g., "IfcWall")
-     * @return Jsonnet template for the element type
-     */
     static std::string getElementTypeTemplate(const std::string& element_type);
 
 private:
+#ifdef ENABLE_JSONNET
     JsonnetVm* m_vm;
-    std::map<std::string, std::string> m_external_vars;
-
-    /**
-     * Setup the Jsonnet VM with IFC data
-     * @param ifc_data JSON data to make available in templates
-     */
+#endif
+    std::unordered_map<std::string, std::string> m_external_vars;
+    
     void setupVmWithIfcData(const json& ifc_data);
-
-    /**
-     * Handle Jsonnet errors
-     * @param error_msg Error message from Jsonnet
-     * @return JSON error response
-     */
+    void setImportCallback(JsonnetImportCallback* import_callback);
     json handleJsonnetError(const std::string& error_msg);
 };
