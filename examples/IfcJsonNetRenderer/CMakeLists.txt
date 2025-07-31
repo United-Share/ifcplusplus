@@ -71,9 +71,17 @@ set_target_properties(IfcJsonNetRenderer PROPERTIES CXX_STANDARD 17)
 TARGET_LINK_LIBRARIES(IfcJsonNetRenderer 
     optimized IfcPlusPlus debug IfcPlusPlusd
     Crow::Crow
-    jsonnet
+    ${CMAKE_CURRENT_BINARY_DIR}/Release/libjsonnet.a
+    ${CMAKE_CURRENT_BINARY_DIR}/Release/libmd5.a
+    ${CMAKE_CURRENT_BINARY_DIR}/Release/libc4core.a
+    ${CMAKE_CURRENT_BINARY_DIR}/Release/libryml.a
     Threads::Threads
+    dl
+    m
 )
+
+# Ensure libjsonnet is built before IfcJsonNetRenderer
+add_dependencies(IfcJsonNetRenderer libjsonnet)
 
 TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
     PRIVATE
