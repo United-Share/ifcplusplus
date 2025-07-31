@@ -1,0 +1,3 @@
+/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-subbuild/CMakeFiles/crow-populate.dir
+/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-subbuild/CMakeFiles/edit_cache.dir
+/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-subbuild/CMakeFiles/rebuild_cache.dir
