@@ -124,7 +124,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -484,6 +484,9 @@ IfcJsonNetRenderer_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 IfcJsonNetRenderer_SOURCE_DIR:STATIC=/workspace/examples/IfcJsonNetRenderer
 
+//Enable API generation (python, etc)
+RYML_BUILD_API:BOOL=OFF
+
 //compilation flags for ryml targets
 RYML_CXX_FLAGS:STRING=
 
@@ -785,8 +788,6 @@ FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/lib/x86_64-linux-gnu/cmake/Boo
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
-//Enable API generation (python, etc)
-RYML_BUILD_API:INTERNAL=OFF
 //linker supports push/pop state
 _CMAKE_CXX_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //linker supports push/pop state

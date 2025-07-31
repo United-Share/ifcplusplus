@@ -18,10 +18,10 @@ RestEndpoints::~RestEndpoints() {
 void RestEndpoints::setupEndpoints(crow::SimpleApp& app) {
     // CORS preflight handler
     CROW_ROUTE(app, "/<path>").methods("OPTIONS"_method)
-    ([this](const crow::request& req) {
-        crow::response res(200);
+    ([this](const crow::request& req, crow::response& res, const std::string& path) {
+        res.code = 200;
         addCorsHeaders(res);
-        return res;
+        res.end();
     });
 
     // Load IFC file
@@ -80,7 +80,7 @@ void RestEndpoints::setupEndpoints(crow::SimpleApp& app) {
 
     // Root endpoint
     CROW_ROUTE(app, "/")
-    ([](const crow::request& req) {
+    ([](const crow::request& req, crow::response& res) {
         json info;
         info["name"] = "IFC JSON Renderer API";
         info["version"] = "1.0.0";
@@ -97,10 +97,10 @@ void RestEndpoints::setupEndpoints(crow::SimpleApp& app) {
             "GET /api/status"
         };
         
-        crow::response res(200);
+        res.code = 200;
         res.set_header("Content-Type", "application/json");
         res.write(info.dump(2));
-        return res;
+        res.end();
     });
 }
 

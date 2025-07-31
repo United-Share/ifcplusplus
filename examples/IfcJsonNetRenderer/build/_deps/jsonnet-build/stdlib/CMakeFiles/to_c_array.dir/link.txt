@@ -1,1 +1,0 @@
-/usr/bin/c++  -g -Wall -Wextra -Woverloaded-virtual -pedantic -std=c++11 -fPIC -O3 -O3 -DNDEBUG -rdynamic -Xlinker --dependency-file=CMakeFiles/to_c_array.dir/link.d CMakeFiles/to_c_array.dir/to_c_array.cpp.o -o ../../../Release/to_c_array   -L/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-build

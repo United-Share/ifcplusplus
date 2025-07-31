@@ -215,7 +215,7 @@ json IfcParser::getEntitiesByType(const std::string& ifcType) {
     
     const auto& map_entities = m_ifc_model->getMapIfcEntities();
     
-    for (const auto& pair : map_objects) {
+    for (const auto& pair : map_entities) {
         std::shared_ptr<IfcObjectDefinition> obj_def = 
             std::dynamic_pointer_cast<IfcObjectDefinition>(pair.second);
         

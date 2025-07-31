@@ -54,6 +54,10 @@ FetchContent_MakeAvailable(jsonnet)
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/Debug)
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/${CMAKE_BUILD_TYPE})
 
+# Add main project build directory for IfcPlusPlus
+LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../build/Release)
+LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../build/${CMAKE_BUILD_TYPE})
+
 ADD_EXECUTABLE(IfcJsonNetRenderer 
     src/main.cpp
     src/ifc_parser.cpp
@@ -67,7 +71,7 @@ set_target_properties(IfcJsonNetRenderer PROPERTIES CXX_STANDARD 17)
 TARGET_LINK_LIBRARIES(IfcJsonNetRenderer 
     optimized IfcPlusPlus debug IfcPlusPlusd
     Crow::Crow
-    jsonnet_static
+    jsonnet
     Threads::Threads
 )
 

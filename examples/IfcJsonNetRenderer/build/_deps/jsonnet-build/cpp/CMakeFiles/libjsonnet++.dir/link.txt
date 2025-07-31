@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -g -Wall -Wextra -Woverloaded-virtual -pedantic -std=c++11 -fPIC -O3 -O3 -DNDEBUG -Xlinker --dependency-file=CMakeFiles/libjsonnet++.dir/link.d -shared -Wl,-soname,libjsonnet++.so.0 -o ../../../Release/libjsonnet++.so.0.20.0 CMakeFiles/libjsonnet++.dir/libjsonnet++.cpp.o   -L/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-build
