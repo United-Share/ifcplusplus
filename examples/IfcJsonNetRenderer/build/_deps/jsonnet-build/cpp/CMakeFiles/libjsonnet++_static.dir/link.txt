@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../Release/libjsonnet++.a CMakeFiles/libjsonnet++_static.dir/libjsonnet++.cpp.o
-/usr/bin/ranlib ../../../Release/libjsonnet++.a

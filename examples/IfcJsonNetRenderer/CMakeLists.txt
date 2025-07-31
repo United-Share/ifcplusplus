@@ -18,11 +18,13 @@ ENDIF(NOT WIN32)
 ADD_DEFINITIONS(-DUNICODE)
 ADD_DEFINITIONS(-D_UNICODE)
 ADD_DEFINITIONS(-DIFCQUERY_STATIC_LIB)
+ADD_DEFINITIONS(-DBOOST_ASIO_NO_DEPRECATED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find required packages
 find_package(Threads REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system)
 
 # Include FetchContent for downloading dependencies
 include(FetchContent)
@@ -31,7 +33,7 @@ include(FetchContent)
 FetchContent_Declare(
     crow
     GIT_REPOSITORY https://github.com/CrowCpp/Crow.git
-    GIT_TAG v1.0+5
+    GIT_TAG v1.2.0
 )
 FetchContent_MakeAvailable(crow)
 
@@ -69,6 +71,7 @@ TARGET_LINK_LIBRARIES(IfcJsonNetRenderer
     Crow::Crow
     jsonnet_static
     Threads::Threads
+    Boost::system
 )
 
 TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
