@@ -366,7 +366,7 @@ namespace GeomDebugDump
 		dumpPolyline(poly_3d_carve, color, lineThickness, move_dump_position, depthTestOff);
 	}
 
-	static void dumpPolyline(const std::vector<vec2>& vec_polyline, const vec4& color, double lineThickness, bool move_dump_position, bool depthTestOff)
+	void dumpPolyline(const std::vector<vec2>& vec_polyline, const vec4& color, double lineThickness, bool move_dump_position, bool depthTestOff)
 	{
 		if (vec_polyline.size() < 1)
 		{
@@ -1747,13 +1747,7 @@ namespace GeomDebugDump
 		step_writer->writeModelToStream(stream, ifc_model);
 		ifc_model->clearIfcModel();
 
-#ifdef _MSC_VER
 		std::ofstream ofs(file_path, std::ofstream::out);
-#else
-		std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> conv;
-		std::string file_path8 = conv.to_bytes(file_path);
-		std::ofstream ofs(file_path8, std::ofstream::out);
-#endif
 		ofs << stream.str().c_str();
 		ofs.close();
 	}
