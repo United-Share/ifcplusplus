@@ -48,13 +48,8 @@ set(BUILD_GOOGLETEST OFF CACHE BOOL "Build googletest" FORCE)
 
 FetchContent_MakeAvailable(jsonnet)
 
-# Fetch nlohmann/json for JSON handling
-FetchContent_Declare(
-    json
-    GIT_REPOSITORY https://github.com/nlohmann/json.git
-    GIT_TAG v3.11.3
-)
-FetchContent_MakeAvailable(json)
+# nlohmann/json is already included as a dependency of jsonnet
+# No need to fetch it separately
 
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/Debug)
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/${CMAKE_BUILD_TYPE})
@@ -73,7 +68,6 @@ TARGET_LINK_LIBRARIES(IfcJsonNetRenderer
     optimized IfcPlusPlus debug IfcPlusPlusd
     Crow::Crow
     jsonnet_static
-    nlohmann_json::nlohmann_json
     Threads::Threads
 )
 
