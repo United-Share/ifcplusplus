@@ -1,12 +1,16 @@
-CMAKE_MINIMUM_REQUIRED (VERSION 3.16)
+cmake_minimum_required(VERSION 3.20)
 
 PROJECT(IfcJsonNetRenderer)
 
-# Set CMake policies to avoid warnings
+# Set CMake policies to avoid warnings from external dependencies
 cmake_policy(SET CMP0144 NEW)  # find_package uses upper-case <PACKAGENAME>_ROOT variables
 if(POLICY CMP0167)
     cmake_policy(SET CMP0167 NEW)  # The FindBoost module is removed
 endif()
+
+# Set policy defaults for external dependencies
+set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)  # option() honors normal variables
+set(CMAKE_POLICY_DEFAULT_CMP0144 NEW)  # find_package uses upper-case variables
 
 IF(NOT CMAKE_BUILD_TYPE)
    SET(CMAKE_BUILD_TYPE "Release")
@@ -41,22 +45,33 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(crow)
 
-# Fetch jsonnet library with CMake compatibility fix
-# Set minimum policy version to handle older CMake versions in dependencies
-set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
-
+# Handle jsonnet dependency with CMake compatibility workaround
 # Disable jsonnet tests and utilities to avoid googletest dependency
 set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
 set(BUILD_JSONNET OFF CACHE BOOL "Build jsonnet executable" FORCE)
 set(BUILD_JSONNETFMT OFF CACHE BOOL "Build jsonnetfmt executable" FORCE)
 set(BUILD_STATIC_LIB ON CACHE BOOL "Build static library" FORCE)
 
+# Temporarily lower CMake requirements for external dependencies
+set(CMAKE_POLICY_DEFAULT_CMP0000 OLD)  # Allow older CMake versions in subdirectories
+
 FetchContent_Declare(
     jsonnet
     GIT_REPOSITORY https://github.com/google/jsonnet.git
     GIT_TAG v0.20.0
 )
-FetchContent_MakeAvailable(jsonnet)
+
+# Download and configure jsonnet
+FetchContent_GetProperties(jsonnet)
+if(NOT jsonnet_POPULATED)
+    message(STATUS "Fetching jsonnet...")
+    FetchContent_Populate(jsonnet)
+    
+    # Manually add the subdirectory with relaxed CMake requirements
+    set(CMAKE_WARN_DEPRECATED OFF)  # Disable deprecation warnings for this subdirectory
+    add_subdirectory(${jsonnet_SOURCE_DIR} ${jsonnet_BINARY_DIR} EXCLUDE_FROM_ALL)
+    set(CMAKE_WARN_DEPRECATED ON)   # Re-enable warnings
+endif()
 
 # Fetch nlohmann/json for JSON handling
 FetchContent_Declare(
