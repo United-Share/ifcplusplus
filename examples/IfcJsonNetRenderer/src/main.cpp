@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
         g_app = &app;
         
         // Setup CORS middleware
-        app.use_compression(crow::compression::algorithm::GZIP);
+        // Note: Compression feature might not be available in this Crow version
         
         // Create REST endpoints handler
         RestEndpoints endpoints;
