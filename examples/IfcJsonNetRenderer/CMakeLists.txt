@@ -55,10 +55,10 @@ LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/Debug)
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/${CMAKE_BUILD_TYPE})
 
 ADD_EXECUTABLE(IfcJsonNetRenderer 
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/main.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/ifc_parser.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/jsonnet_renderer.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/rest_endpoints.cpp
+    src/main.cpp
+    src/ifc_parser.cpp
+    src/jsonnet_renderer.cpp
+    src/rest_endpoints.cpp
 )
 
 set_target_properties(IfcJsonNetRenderer PROPERTIES DEBUG_POSTFIX "d")

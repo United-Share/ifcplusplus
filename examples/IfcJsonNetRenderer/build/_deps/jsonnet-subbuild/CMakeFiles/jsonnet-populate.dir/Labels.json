@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/CMakeFiles/jsonnet-populate"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/CMakeFiles/jsonnet-populate.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/CMakeFiles/jsonnet-populate-complete.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/jsonnet-populate-prefix/src/jsonnet-populate-stamp/jsonnet-populate-build.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/jsonnet-populate-prefix/src/jsonnet-populate-stamp/jsonnet-populate-configure.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/jsonnet-populate-prefix/src/jsonnet-populate-stamp/jsonnet-populate-download.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/jsonnet-populate-prefix/src/jsonnet-populate-stamp/jsonnet-populate-install.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/jsonnet-populate-prefix/src/jsonnet-populate-stamp/jsonnet-populate-mkdir.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/jsonnet-populate-prefix/src/jsonnet-populate-stamp/jsonnet-populate-patch.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/jsonnet-populate-prefix/src/jsonnet-populate-stamp/jsonnet-populate-test.rule"
+		},
+		{
+			"file" : "/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-subbuild/jsonnet-populate-prefix/src/jsonnet-populate-stamp/jsonnet-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"jsonnet-populate"
+		],
+		"name" : "jsonnet-populate"
+	}
+}

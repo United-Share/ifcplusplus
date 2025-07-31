@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../Release/libjsonnet.a CMakeFiles/libjsonnet_static.dir/desugarer.cpp.o CMakeFiles/libjsonnet_static.dir/formatter.cpp.o CMakeFiles/libjsonnet_static.dir/lexer.cpp.o CMakeFiles/libjsonnet_static.dir/libjsonnet.cpp.o CMakeFiles/libjsonnet_static.dir/parser.cpp.o CMakeFiles/libjsonnet_static.dir/pass.cpp.o CMakeFiles/libjsonnet_static.dir/static_analysis.cpp.o CMakeFiles/libjsonnet_static.dir/string_utils.cpp.o CMakeFiles/libjsonnet_static.dir/vm.cpp.o
+/usr/bin/ranlib ../../../Release/libjsonnet.a
