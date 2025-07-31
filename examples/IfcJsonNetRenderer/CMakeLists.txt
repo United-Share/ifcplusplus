@@ -27,12 +27,18 @@ find_package(Threads REQUIRED)
 # Include FetchContent for downloading dependencies
 include(FetchContent)
 
-# Fetch Crow framework
+# Fetch Crow framework - using newer version that's compatible with modern Boost
 FetchContent_Declare(
     crow
     GIT_REPOSITORY https://github.com/CrowCpp/Crow.git
-    GIT_TAG v1.0+5
+    GIT_TAG v1.2.0
 )
+
+# Set CROW_FEATURES to disable compression if not needed
+set(CROW_FEATURES "" CACHE STRING "Features to enable in Crow")
+set(CROW_BUILD_EXAMPLES OFF CACHE BOOL "Build Crow examples")
+set(CROW_BUILD_TESTS OFF CACHE BOOL "Build Crow tests")
+
 FetchContent_MakeAvailable(crow)
 
 # Fetch jsonnet header-only library
@@ -48,17 +54,25 @@ set(BUILD_GOOGLETEST OFF CACHE BOOL "Build googletest" FORCE)
 
 FetchContent_MakeAvailable(jsonnet)
 
-# nlohmann/json is already included as a dependency of jsonnet
-# No need to fetch it separately
+# Set the root directory if not already set
+if(NOT DEFINED IFCPP_SOURCE_DIR)
+    set(IFCPP_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+endif()
+
+# Find or build IfcPlusPlus library
+if(NOT TARGET IfcPlusPlus)
+    # If IfcPlusPlus is not already built, add it as a subdirectory
+    add_subdirectory(${IFCPP_SOURCE_DIR}/IfcPlusPlus ${CMAKE_BINARY_DIR}/IfcPlusPlus)
+endif()
 
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/Debug)
 LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/${CMAKE_BUILD_TYPE})
 
 ADD_EXECUTABLE(IfcJsonNetRenderer 
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/main.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/ifc_parser.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/jsonnet_renderer.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/rest_endpoints.cpp
+    src/main.cpp
+    src/ifc_parser.cpp
+    src/jsonnet_renderer.cpp
+    src/rest_endpoints.cpp
 )
 
 set_target_properties(IfcJsonNetRenderer PROPERTIES DEBUG_POSTFIX "d")
@@ -85,6 +99,9 @@ TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
     ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/Carve/build/src
     ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/glm
     ${jsonnet_SOURCE_DIR}/include
+    ${jsonnet_SOURCE_DIR}/third_party/json/include
+    ${jsonnet_SOURCE_DIR}/third_party/rapidyaml/rapidyaml/src
+    ${jsonnet_SOURCE_DIR}/third_party/rapidyaml/rapidyaml/ext/c4core/src
 )
         
 INSTALL(
