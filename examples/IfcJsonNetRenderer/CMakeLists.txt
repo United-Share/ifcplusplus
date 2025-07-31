@@ -53,8 +53,8 @@ FetchContent_MakeAvailable(jsonnet)
 # nlohmann/json is already included as a dependency of jsonnet
 # No need to fetch it separately
 
-LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/Debug)
-LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/${CMAKE_BUILD_TYPE})
+LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/../../build/Release)
+LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/../../Release)
 
 ADD_EXECUTABLE(IfcJsonNetRenderer 
     src/main.cpp
@@ -67,9 +67,10 @@ set_target_properties(IfcJsonNetRenderer PROPERTIES DEBUG_POSTFIX "d")
 set_target_properties(IfcJsonNetRenderer PROPERTIES CXX_STANDARD 17)
 
 TARGET_LINK_LIBRARIES(IfcJsonNetRenderer 
-    optimized IfcPlusPlus debug IfcPlusPlusd
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../build/Release/libIfcPlusPlus.a
     Crow::Crow
-    jsonnet_static
+    libjsonnet++
+    libjsonnet
     Threads::Threads
     Boost::system
 )
