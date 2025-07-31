@@ -1,6 +1,7 @@
 #include "ifc_parser.h"
 #include <iostream>
 #include <unordered_set>
+#include <unordered_map>
 #include <ifcpp/IFC4X3/include/IfcGloballyUniqueId.h>
 #include <ifcpp/IFC4X3/include/IfcLabel.h>
 #include <ifcpp/IFC4X3/include/IfcText.h>
@@ -28,8 +29,7 @@ json IfcParser::loadIfcFile(const std::string& filename) {
         
         // Initialize geometry converter
         std::shared_ptr<GeometrySettings> geom_settings = std::make_shared<GeometrySettings>();
-        m_geometry_converter = std::make_shared<GeometryConverter>(m_ifc_model);
-        m_geometry_converter->getGeomSettings() = geom_settings;
+        m_geometry_converter = std::make_shared<GeometryConverter>(m_ifc_model, geom_settings);
         
         // Convert geometry
         m_geometry_converter->convertGeometry();
@@ -104,7 +104,7 @@ json IfcParser::convertObjectToJson(std::shared_ptr<IfcObjectDefinition> obj, st
     
     // Add geometry if available
     if (m_geometry_converter) {
-        const std::map<std::string, std::shared_ptr<ProductShapeData>>& shape_data = 
+        const std::unordered_map<std::string, std::shared_ptr<ProductShapeData>>& shape_data = 
             m_geometry_converter->getShapeInputData();
         
         auto it = shape_data.find(std::to_string(obj->m_tag));
@@ -195,7 +195,7 @@ json IfcParser::getEntityGeometry(const std::string& entityId) {
         return json();
     }
     
-    const std::map<std::string, std::shared_ptr<ProductShapeData>>& shape_data = 
+    const std::unordered_map<std::string, std::shared_ptr<ProductShapeData>>& shape_data = 
         m_geometry_converter->getShapeInputData();
     
     auto it = shape_data.find(entityId);
