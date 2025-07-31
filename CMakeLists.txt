@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED (VERSION 3.6)
+CMAKE_MINIMUM_REQUIRED (VERSION 3.7.2)
 project(IfcPlusPlus)
 
 # Set a default build type if none was specified https://blog.kitware.com/cmake-and-the-default-build-type/
