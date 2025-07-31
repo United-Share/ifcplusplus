@@ -144,8 +144,12 @@ Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_render
 Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o
 Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/build.make
 Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/compiler_depend.ts
+Release/IfcJsonNetRenderer: /workspace/examples/IfcJsonNetRenderer/../../build/Release/libIfcPlusPlus.a
+Release/IfcJsonNetRenderer: Release/libjsonnet++.so.0.20.0
+Release/IfcJsonNetRenderer: Release/libjsonnet.so.0.20.0
 Release/IfcJsonNetRenderer: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0
-Release/IfcJsonNetRenderer: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.83.0
+Release/IfcJsonNetRenderer: Release/libmd5.a
+Release/IfcJsonNetRenderer: Release/libryml.a
 Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Release/IfcJsonNetRenderer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/IfcJsonNetRenderer.dir/link.txt --verbose=$(VERBOSE)

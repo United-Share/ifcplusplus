@@ -71,7 +71,7 @@ _deps/jsonnet-build/stdlib/CMakeFiles/stdlib: _deps/jsonnet-src/core/std.jsonnet
 _deps/jsonnet-src/core/std.jsonnet.h: Release/to_c_array
 _deps/jsonnet-src/core/std.jsonnet.h: _deps/jsonnet-src/stdlib/std.jsonnet
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating ../../jsonnet-src/core/std.jsonnet.h"
-	cd /workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-build/stdlib && ../../../Release/to_c_array /workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-src/stdlib/std.jsonnet /workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-src/core/std.jsonnet.h
+	cd /workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-build/stdlib && ..//to_c_array /workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-src/stdlib/std.jsonnet /workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-src/core/std.jsonnet.h
 
 _deps/jsonnet-build/stdlib/CMakeFiles/stdlib.dir/codegen:
 .PHONY : _deps/jsonnet-build/stdlib/CMakeFiles/stdlib.dir/codegen

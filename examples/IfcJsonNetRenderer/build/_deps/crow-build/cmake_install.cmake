@@ -67,7 +67,10 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/Crow" TYPE FILE FILES "/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-build/CrowConfig.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/Crow" TYPE FILE FILES
+    "/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-src/cmake/Findasio.cmake"
+    "/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-build/CrowConfig.cmake"
+    )
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT

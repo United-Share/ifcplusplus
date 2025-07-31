@@ -60,7 +60,7 @@ add_library(Crow::Crow INTERFACE IMPORTED)
 
 set_target_properties(Crow::Crow PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
-  INTERFACE_LINK_LIBRARIES "Boost::boost;Boost::system;Boost::date_time;Threads::Threads"
+  INTERFACE_LINK_LIBRARIES "asio::asio"
 )
 
 # Load information for each installed configuration.

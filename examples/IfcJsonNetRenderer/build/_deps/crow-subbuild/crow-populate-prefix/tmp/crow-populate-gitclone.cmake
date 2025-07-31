@@ -52,13 +52,13 @@ endif()
 
 execute_process(
   COMMAND "/usr/bin/git"
-          checkout "v1.0+5" --
+          checkout "v1.2.0" --
   WORKING_DIRECTORY "/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-src"
   RESULT_VARIABLE error_code
   ${maybe_show_command}
 )
 if(error_code)
-  message(FATAL_ERROR "Failed to checkout tag: 'v1.0+5'")
+  message(FATAL_ERROR "Failed to checkout tag: 'v1.2.0'")
 endif()
 
 set(init_submodules TRUE)

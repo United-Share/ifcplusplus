@@ -3,7 +3,10 @@
 #include <string>
 #include <map>
 #include <json.hpp>
+
+extern "C" {
 #include <libjsonnet.h>
+}
 
 using json = nlohmann::json;
 

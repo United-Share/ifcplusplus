@@ -364,7 +364,10 @@ _deps/jsonnet-build/third_party/md5/clean: _deps/jsonnet-build/third_party/md5/C
 # Target rules for target CMakeFiles/IfcJsonNetRenderer.dir
 
 # All Build rule for target.
-CMakeFiles/IfcJsonNetRenderer.dir/all:
+CMakeFiles/IfcJsonNetRenderer.dir/all: _deps/jsonnet-build/third_party/md5/CMakeFiles/md5.dir/all
+CMakeFiles/IfcJsonNetRenderer.dir/all: _deps/jsonnet-build/ryml/CMakeFiles/ryml.dir/all
+CMakeFiles/IfcJsonNetRenderer.dir/all: _deps/jsonnet-build/core/CMakeFiles/libjsonnet.dir/all
+CMakeFiles/IfcJsonNetRenderer.dir/all: _deps/jsonnet-build/cpp/CMakeFiles/libjsonnet++.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target IfcJsonNetRenderer"
@@ -372,7 +375,7 @@ CMakeFiles/IfcJsonNetRenderer.dir/all:
 
 # Build rule for subdir invocation for target.
 CMakeFiles/IfcJsonNetRenderer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/examples/IfcJsonNetRenderer/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/examples/IfcJsonNetRenderer/build/CMakeFiles 48
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/IfcJsonNetRenderer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/examples/IfcJsonNetRenderer/build/CMakeFiles 0
 .PHONY : CMakeFiles/IfcJsonNetRenderer.dir/rule

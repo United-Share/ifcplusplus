@@ -18,10 +18,10 @@ RestEndpoints::~RestEndpoints() {
 void RestEndpoints::setupEndpoints(crow::SimpleApp& app) {
     // CORS preflight handler
     CROW_ROUTE(app, "/<path>").methods("OPTIONS"_method)
-    ([this](const crow::request& req) {
-        crow::response res(200);
+    ([this](const crow::request& req, crow::response& res, const std::string& path) {
+        res.code = 200;
         addCorsHeaders(res);
-        return res;
+        res.end();
     });
 
     // Load IFC file

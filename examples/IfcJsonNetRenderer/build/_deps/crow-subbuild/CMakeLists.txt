@@ -27,7 +27,7 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 
 include(ExternalProject)
 ExternalProject_Add(crow-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/CrowCpp/Crow.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v1.0+5"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/CrowCpp/Crow.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "v1.2.0"
                     SOURCE_DIR          "/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-src"
                     BINARY_DIR          "/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-build"
                     CONFIGURE_COMMAND   ""

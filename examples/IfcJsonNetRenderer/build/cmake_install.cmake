@@ -54,7 +54,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/IfcJsonNetRenderer")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/IfcJsonNetRenderer"
-         OLD_RPATH "/workspace/examples/IfcJsonNetRenderer/build/IfcPlusPlus/Debug:/workspace/examples/IfcJsonNetRenderer/build/IfcPlusPlus/Release:"
+         OLD_RPATH "/workspace/examples/IfcJsonNetRenderer/build/../../build/Release:/workspace/examples/IfcJsonNetRenderer/build/../../Release:/workspace/examples/IfcJsonNetRenderer/build/Release:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/IfcJsonNetRenderer")

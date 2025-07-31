@@ -18,11 +18,13 @@ ENDIF(NOT WIN32)
 ADD_DEFINITIONS(-DUNICODE)
 ADD_DEFINITIONS(-D_UNICODE)
 ADD_DEFINITIONS(-DIFCQUERY_STATIC_LIB)
+ADD_DEFINITIONS(-DBOOST_ASIO_NO_DEPRECATED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find required packages
 find_package(Threads REQUIRED)
+find_package(Boost REQUIRED COMPONENTS system)
 
 # Include FetchContent for downloading dependencies
 include(FetchContent)
@@ -31,7 +33,7 @@ include(FetchContent)
 FetchContent_Declare(
     crow
     GIT_REPOSITORY https://github.com/CrowCpp/Crow.git
-    GIT_TAG v1.0+5
+    GIT_TAG v1.2.0
 )
 FetchContent_MakeAvailable(crow)
 
@@ -51,8 +53,8 @@ FetchContent_MakeAvailable(jsonnet)
 # nlohmann/json is already included as a dependency of jsonnet
 # No need to fetch it separately
 
-LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/Debug)
-LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/${CMAKE_BUILD_TYPE})
+LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/../../build/Release)
+LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/../../Release)
 
 ADD_EXECUTABLE(IfcJsonNetRenderer 
     src/main.cpp
@@ -65,10 +67,12 @@ set_target_properties(IfcJsonNetRenderer PROPERTIES DEBUG_POSTFIX "d")
 set_target_properties(IfcJsonNetRenderer PROPERTIES CXX_STANDARD 17)
 
 TARGET_LINK_LIBRARIES(IfcJsonNetRenderer 
-    optimized IfcPlusPlus debug IfcPlusPlusd
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../build/Release/libIfcPlusPlus.a
     Crow::Crow
-    jsonnet_static
+    libjsonnet++
+    libjsonnet
     Threads::Threads
+    Boost::system
 )
 
 TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
