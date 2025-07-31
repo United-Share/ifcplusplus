@@ -1,10 +1,11 @@
 #pragma once
 
+#include <fstream>
 #include <memory>
 #include <string>
 #include <map>
 #include <vector>
-#include <nlohmann/json.hpp>
+#include <json.hpp>
 
 #include <ifcpp/model/BuildingModel.h>
 #include <ifcpp/reader/ReaderSTEP.h>

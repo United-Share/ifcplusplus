@@ -47,17 +47,17 @@ json IfcParser::loadIfcFile(const std::string& filename) {
 json IfcParser::convertModelToJson(std::shared_ptr<BuildingModel> model) {
     json result;
     
-    // Get basic model information
-    std::shared_ptr<IfcProject> project = model->getIfcProject();
-    if (project) {
-        result["project"] = convertObjectToJson(project, std::set<int>());
+    // Get project information
+    if (shared_ptr<IfcProject> project = model->getIfcProject()) {
+        std::set<int> visited;
+        result["project"] = convertObjectToJson(project, visited);
     }
     
     // Get all entities
-    const std::map<int, std::shared_ptr<BuildingObject>>& map_objects = model->getMapIfcObjects();
+    const auto& map_entities = model->getMapIfcEntities();
     json entities = json::array();
     
-    for (const auto& pair : map_objects) {
+    for (const auto& pair : map_entities) {
         std::shared_ptr<IfcObjectDefinition> obj_def = 
             std::dynamic_pointer_cast<IfcObjectDefinition>(pair.second);
         if (obj_def) {
@@ -213,7 +213,7 @@ json IfcParser::getEntitiesByType(const std::string& ifcType) {
         return entities;
     }
     
-    const std::map<int, std::shared_ptr<BuildingObject>>& map_objects = m_ifc_model->getMapIfcObjects();
+    const auto& map_entities = m_ifc_model->getMapIfcEntities();
     
     for (const auto& pair : map_objects) {
         std::shared_ptr<IfcObjectDefinition> obj_def = 

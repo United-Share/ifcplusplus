@@ -2,7 +2,7 @@
 
 #include <string>
 #include <map>
-#include <nlohmann/json.hpp>
+#include <json.hpp>
 #include <libjsonnet.h>
 
 using json = nlohmann::json;
