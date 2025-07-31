@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED (VERSION 3.7.2)
+CMAKE_MINIMUM_REQUIRED (VERSION 3.10)
 
 PROJECT(IfcJsonNetRenderer)
 
@@ -48,24 +48,17 @@ set(BUILD_GOOGLETEST OFF CACHE BOOL "Build googletest" FORCE)
 
 FetchContent_MakeAvailable(jsonnet)
 
-# nlohmann/json is already included as a dependency of jsonnet
-# No need to fetch it separately
-
-LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/Debug)
-LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/IfcPlusPlus/${CMAKE_BUILD_TYPE})
-
 ADD_EXECUTABLE(IfcJsonNetRenderer 
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/main.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/ifc_parser.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/jsonnet_renderer.cpp
-    ${IFCPP_SOURCE_DIR}/examples/IfcJsonNetRenderer/src/rest_endpoints.cpp
+    src/main.cpp
+    src/ifc_parser.cpp
+    src/jsonnet_renderer.cpp
+    src/rest_endpoints.cpp
 )
 
 set_target_properties(IfcJsonNetRenderer PROPERTIES DEBUG_POSTFIX "d")
 set_target_properties(IfcJsonNetRenderer PROPERTIES CXX_STANDARD 17)
 
 TARGET_LINK_LIBRARIES(IfcJsonNetRenderer 
-    optimized IfcPlusPlus debug IfcPlusPlusd
     Crow::Crow
     jsonnet_static
     Threads::Threads
@@ -74,16 +67,16 @@ TARGET_LINK_LIBRARIES(IfcJsonNetRenderer
 TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/ifcpp/IFC4X3/include
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/glm
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/Carve/include
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/Carve/src
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/Carve/src/include
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/Carve/src/common
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/Carve/build/src
-    ${IFCPP_SOURCE_DIR}/IfcPlusPlus/src/external/glm
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/ifcpp/IFC4X3/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/glm
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/Carve/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/Carve/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/Carve/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/Carve/src/common
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/Carve/build/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/glm
     ${jsonnet_SOURCE_DIR}/include
 )
         
