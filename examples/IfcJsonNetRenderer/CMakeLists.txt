@@ -27,12 +27,19 @@ find_package(Threads REQUIRED)
 # Include FetchContent for downloading dependencies
 include(FetchContent)
 
-# Fetch Crow framework
+# Fetch Crow framework with ASIO standalone
 FetchContent_Declare(
     crow
     GIT_REPOSITORY https://github.com/CrowCpp/Crow.git
     GIT_TAG v1.0+5
 )
+
+# Configure Crow to use standalone ASIO without Boost
+set(CROW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(CROW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(CROW_FEATURES "ssl" CACHE STRING "" FORCE)
+set(ASIO_STANDALONE ON CACHE BOOL "" FORCE)
+
 FetchContent_MakeAvailable(crow)
 
 # Fetch jsonnet header-only library
@@ -93,3 +100,10 @@ INSTALL(
     LIBRARY DESTINATION bin
     ARCHIVE DESTINATION lib
 )
+
+# Enable testing
+option(BUILD_TESTING "Build the testing tree." ON)
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
