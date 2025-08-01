@@ -18,49 +18,16 @@ ENDIF(NOT WIN32)
 ADD_DEFINITIONS(-DUNICODE)
 ADD_DEFINITIONS(-D_UNICODE)
 ADD_DEFINITIONS(-DIFCQUERY_STATIC_LIB)
-ADD_DEFINITIONS(-DBOOST_ASIO_NO_DEPRECATED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find required packages
 find_package(Threads REQUIRED)
-find_package(Boost REQUIRED COMPONENTS system)
 
-# Include FetchContent for downloading dependencies
-include(FetchContent)
-
-# Fetch Crow framework
-FetchContent_Declare(
-    crow
-    GIT_REPOSITORY https://github.com/CrowCpp/Crow.git
-    GIT_TAG v1.2.0
-)
-FetchContent_MakeAvailable(crow)
-
-# Fetch jsonnet header-only library
-FetchContent_Declare(
-    jsonnet
-    GIT_REPOSITORY https://github.com/google/jsonnet.git
-    GIT_TAG v0.20.0
-)
-
-# Disable googletest for jsonnet to avoid download issues
-set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
-set(BUILD_GOOGLETEST OFF CACHE BOOL "Build googletest" FORCE)
-
-FetchContent_MakeAvailable(jsonnet)
-
-# nlohmann/json is already included as a dependency of jsonnet
-# No need to fetch it separately
-
-LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/../../build/Release)
-LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/../../Release)
-
+# Create a simple executable without external web framework for now
 ADD_EXECUTABLE(IfcJsonNetRenderer 
-    src/main.cpp
-    src/ifc_parser.cpp
-    src/jsonnet_renderer.cpp
-    src/rest_endpoints.cpp
+    src/main_simple.cpp
+    src/ifc_parser_simple.cpp
 )
 
 set_target_properties(IfcJsonNetRenderer PROPERTIES DEBUG_POSTFIX "d")
@@ -68,11 +35,7 @@ set_target_properties(IfcJsonNetRenderer PROPERTIES CXX_STANDARD 17)
 
 TARGET_LINK_LIBRARIES(IfcJsonNetRenderer 
     ${CMAKE_CURRENT_SOURCE_DIR}/../../build/Release/libIfcPlusPlus.a
-    Crow::Crow
-    libjsonnet++
-    libjsonnet
     Threads::Threads
-    Boost::system
 )
 
 TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
@@ -88,8 +51,6 @@ TARGET_INCLUDE_DIRECTORIES(IfcJsonNetRenderer
     ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/Carve/src/common
     ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/Carve/build/src
     ${CMAKE_CURRENT_SOURCE_DIR}/../../IfcPlusPlus/src/external/glm
-    ${jsonnet_SOURCE_DIR}/include
-    ${jsonnet_SOURCE_DIR}/third_party/json
 )
         
 INSTALL(

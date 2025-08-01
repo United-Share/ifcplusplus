@@ -2,16 +2,9 @@ Release/IfcJsonNetRenderer: \
   /lib/x86_64-linux-gnu/Scrt1.o \
   /lib/x86_64-linux-gnu/crti.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
-  CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o \
-  CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o \
-  CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o \
-  CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o \
+  CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o \
+  CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o \
   /workspace/examples/IfcJsonNetRenderer/../../build/Release/libIfcPlusPlus.a \
-  Release/libjsonnet++.so.0.20.0 \
-  Release/libjsonnet.so.0.20.0 \
-  /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0 \
-  Release/libmd5.a \
-  Release/libryml.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /lib/x86_64-linux-gnu/libm.so \
   /lib/x86_64-linux-gnu/libm.so \
@@ -46,25 +39,11 @@ Release/IfcJsonNetRenderer: \
 
 /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o:
 
-CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o:
+CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o:
 
-CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o:
-
-CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o:
-
-CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o:
+CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o:
 
 /workspace/examples/IfcJsonNetRenderer/../../build/Release/libIfcPlusPlus.a:
-
-Release/libjsonnet++.so.0.20.0:
-
-Release/libjsonnet.so.0.20.0:
-
-/usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0:
-
-Release/libmd5.a:
-
-Release/libryml.a:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so:
 

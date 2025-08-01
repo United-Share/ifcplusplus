@@ -52,21 +52,10 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/workspace/examples/IfcJsonNetRenderer/build/Release/IfcJsonNetRenderer")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/IfcJsonNetRenderer" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/IfcJsonNetRenderer")
-    file(RPATH_CHANGE
-         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/IfcJsonNetRenderer"
-         OLD_RPATH "/workspace/examples/IfcJsonNetRenderer/build/../../build/Release:/workspace/examples/IfcJsonNetRenderer/build/../../Release:/workspace/examples/IfcJsonNetRenderer/build/Release:"
-         NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/IfcJsonNetRenderer")
     endif()
   endif()
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("/workspace/examples/IfcJsonNetRenderer/build/_deps/crow-build/cmake_install.cmake")
-  include("/workspace/examples/IfcJsonNetRenderer/build/_deps/jsonnet-build/cmake_install.cmake")
-
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT

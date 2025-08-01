@@ -8,10 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspace/examples/IfcJsonNetRenderer/src/ifc_parser.cpp" "CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o" "gcc" "CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o.d"
-  "/workspace/examples/IfcJsonNetRenderer/src/jsonnet_renderer.cpp" "CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o" "gcc" "CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o.d"
-  "/workspace/examples/IfcJsonNetRenderer/src/main.cpp" "CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o" "gcc" "CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o.d"
-  "/workspace/examples/IfcJsonNetRenderer/src/rest_endpoints.cpp" "CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o" "gcc" "CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o.d"
+  "/workspace/examples/IfcJsonNetRenderer/src/ifc_parser_simple.cpp" "CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o" "gcc" "CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o.d"
+  "/workspace/examples/IfcJsonNetRenderer/src/main_simple.cpp" "CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o" "gcc" "CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o.d"
   "" "Release/IfcJsonNetRenderer" "gcc" "CMakeFiles/IfcJsonNetRenderer.dir/link.d"
   )
 

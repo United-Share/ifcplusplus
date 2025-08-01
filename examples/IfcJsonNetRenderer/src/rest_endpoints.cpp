@@ -26,61 +26,70 @@ void RestEndpoints::setupEndpoints(crow::SimpleApp& app) {
 
     // Load IFC file
     CROW_ROUTE(app, "/api/ifc/load").methods("POST"_method)
-    ([this](const crow::request& req) {
-        return handleLoadIfc(req);
+    ([this](const crow::request& req, crow::response& res) {
+        res = handleLoadIfc(req);
+        return res;
     });
 
     // Get entities by type
     CROW_ROUTE(app, "/api/ifc/entities/<string>")
-    ([this](const crow::request& req, const std::string& type) {
-        return handleGetEntitiesByType(req, type);
+    ([this](const crow::request& req, crow::response& res, const std::string& type) {
+        res = handleGetEntitiesByType(req, type);
+        return res;
     });
 
     // Get entity geometry
     CROW_ROUTE(app, "/api/ifc/entity/<string>/geometry")
-    ([this](const crow::request& req, const std::string& id) {
-        return handleGetEntityGeometry(req, id);
+    ([this](const crow::request& req, crow::response& res, const std::string& id) {
+        res = handleGetEntityGeometry(req, id);
+        return res;
     });
 
     // Get building hierarchy
     CROW_ROUTE(app, "/api/ifc/hierarchy")
-    ([this](const crow::request& req) {
-        return handleGetHierarchy(req);
+    ([this](const crow::request& req, crow::response& res) {
+        res = handleGetHierarchy(req);
+        return res;
     });
 
     // Render template
     CROW_ROUTE(app, "/api/render/template").methods("POST"_method)
-    ([this](const crow::request& req) {
-        return handleRenderTemplate(req);
+    ([this](const crow::request& req, crow::response& res) {
+        res = handleRenderTemplate(req);
+        return res;
     });
 
     // Render template file
     CROW_ROUTE(app, "/api/render/template/file").methods("POST"_method)
-    ([this](const crow::request& req) {
-        return handleRenderTemplateFile(req);
+    ([this](const crow::request& req, crow::response& res) {
+        res = handleRenderTemplateFile(req);
+        return res;
     });
 
     // Get default template
     CROW_ROUTE(app, "/api/render/templates/default")
-    ([this](const crow::request& req) {
-        return handleGetDefaultTemplate(req);
+    ([this](const crow::request& req, crow::response& res) {
+        res = handleGetDefaultTemplate(req);
+        return res;
     });
 
     // Get element template
     CROW_ROUTE(app, "/api/render/templates/element/<string>")
-    ([this](const crow::request& req, const std::string& type) {
-        return handleGetElementTemplate(req, type);
+    ([this](const crow::request& req, crow::response& res, const std::string& type) {
+        res = handleGetElementTemplate(req, type);
+        return res;
     });
 
     // Get server status
     CROW_ROUTE(app, "/api/status")
-    ([this](const crow::request& req) {
-        return handleGetStatus(req);
+    ([this](const crow::request& req, crow::response& res) {
+        res = handleGetStatus(req);
+        return res;
     });
 
     // Root endpoint
     CROW_ROUTE(app, "/")
-    ([](const crow::request& req) {
+    ([](const crow::request& req, crow::response& res) {
         json info;
         info["name"] = "IFC JSON Renderer API";
         info["version"] = "1.0.0";
@@ -97,10 +106,10 @@ void RestEndpoints::setupEndpoints(crow::SimpleApp& app) {
             "GET /api/status"
         };
         
-        crow::response res(200);
+        res.code = 200;
         res.set_header("Content-Type", "application/json");
         res.write(info.dump(2));
-        return res;
+        res.end();
     });
 }
 

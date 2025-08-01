@@ -72,86 +72,49 @@ include CMakeFiles/IfcJsonNetRenderer.dir/flags.make
 CMakeFiles/IfcJsonNetRenderer.dir/codegen:
 .PHONY : CMakeFiles/IfcJsonNetRenderer.dir/codegen
 
-CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/flags.make
-CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o: /workspace/examples/IfcJsonNetRenderer/src/main.cpp
-CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o -MF CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o.d -o CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o -c /workspace/examples/IfcJsonNetRenderer/src/main.cpp
+CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/flags.make
+CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o: /workspace/examples/IfcJsonNetRenderer/src/main_simple.cpp
+CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o -MF CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o.d -o CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o -c /workspace/examples/IfcJsonNetRenderer/src/main_simple.cpp
 
-CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/examples/IfcJsonNetRenderer/src/main.cpp > CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.i
+CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/examples/IfcJsonNetRenderer/src/main_simple.cpp > CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.i
 
-CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/examples/IfcJsonNetRenderer/src/main.cpp -o CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.s
+CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/examples/IfcJsonNetRenderer/src/main_simple.cpp -o CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.s
 
-CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/flags.make
-CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o: /workspace/examples/IfcJsonNetRenderer/src/ifc_parser.cpp
-CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o -MF CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o.d -o CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o -c /workspace/examples/IfcJsonNetRenderer/src/ifc_parser.cpp
+CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/flags.make
+CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o: /workspace/examples/IfcJsonNetRenderer/src/ifc_parser_simple.cpp
+CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o -MF CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o.d -o CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o -c /workspace/examples/IfcJsonNetRenderer/src/ifc_parser_simple.cpp
 
-CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/examples/IfcJsonNetRenderer/src/ifc_parser.cpp > CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.i
+CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/examples/IfcJsonNetRenderer/src/ifc_parser_simple.cpp > CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.i
 
-CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/examples/IfcJsonNetRenderer/src/ifc_parser.cpp -o CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.s
-
-CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/flags.make
-CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o: /workspace/examples/IfcJsonNetRenderer/src/jsonnet_renderer.cpp
-CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o -MF CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o.d -o CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o -c /workspace/examples/IfcJsonNetRenderer/src/jsonnet_renderer.cpp
-
-CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/examples/IfcJsonNetRenderer/src/jsonnet_renderer.cpp > CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.i
-
-CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/examples/IfcJsonNetRenderer/src/jsonnet_renderer.cpp -o CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.s
-
-CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/flags.make
-CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o: /workspace/examples/IfcJsonNetRenderer/src/rest_endpoints.cpp
-CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o: CMakeFiles/IfcJsonNetRenderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o -MF CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o.d -o CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o -c /workspace/examples/IfcJsonNetRenderer/src/rest_endpoints.cpp
-
-CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/examples/IfcJsonNetRenderer/src/rest_endpoints.cpp > CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.i
-
-CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/examples/IfcJsonNetRenderer/src/rest_endpoints.cpp -o CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.s
+CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/examples/IfcJsonNetRenderer/src/ifc_parser_simple.cpp -o CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.s
 
 # Object files for target IfcJsonNetRenderer
 IfcJsonNetRenderer_OBJECTS = \
-"CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o" \
-"CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o" \
-"CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o" \
-"CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o"
+"CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o" \
+"CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o"
 
 # External object files for target IfcJsonNetRenderer
 IfcJsonNetRenderer_EXTERNAL_OBJECTS =
 
-Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o
-Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o
-Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o
-Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o
+Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o
+Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o
 Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/build.make
 Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/compiler_depend.ts
 Release/IfcJsonNetRenderer: /workspace/examples/IfcJsonNetRenderer/../../build/Release/libIfcPlusPlus.a
-Release/IfcJsonNetRenderer: Release/libjsonnet++.so.0.20.0
-Release/IfcJsonNetRenderer: Release/libjsonnet.so.0.20.0
-Release/IfcJsonNetRenderer: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0
-Release/IfcJsonNetRenderer: Release/libmd5.a
-Release/IfcJsonNetRenderer: Release/libryml.a
 Release/IfcJsonNetRenderer: CMakeFiles/IfcJsonNetRenderer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Release/IfcJsonNetRenderer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/examples/IfcJsonNetRenderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Release/IfcJsonNetRenderer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/IfcJsonNetRenderer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

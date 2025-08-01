@@ -1,13 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/IfcJsonNetRenderer.dir/link.d"
-  "CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o"
-  "CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o.d"
-  "CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o"
-  "CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o.d"
-  "CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o"
-  "CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o.d"
-  "CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o"
-  "CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o.d"
+  "CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o"
+  "CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o.d"
+  "CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o"
+  "CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o.d"
   "Release/IfcJsonNetRenderer"
   "Release/IfcJsonNetRenderer.pdb"
 )

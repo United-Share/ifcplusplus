@@ -5,15 +5,11 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <json.hpp>
-
 #include <ifcpp/model/BuildingModel.h>
 #include <ifcpp/reader/ReaderSTEP.h>
 #include <ifcpp/geometry/GeometryConverter.h>
 #include <ifcpp/IFC4X3/include/IfcProject.h>
 #include <ifcpp/IFC4X3/include/IfcObjectDefinition.h>
-
-using json = nlohmann::json;
 
 /**
  * IFC Parser class that converts IFC files to JSON representation
@@ -24,38 +20,38 @@ public:
     ~IfcParser();
 
     /**
-     * Load IFC file and convert to JSON
+     * Load IFC file and test basic functionality
      * @param filename Path to the IFC file
-     * @return JSON representation of the IFC model
+     * @return true if successful
      */
-    json loadIfcFile(const std::string& filename);
+    bool loadIfcFile(const std::string& filename);
 
     /**
-     * Convert IFC model to JSON
+     * Convert IFC model to string representation
      * @param model The IFC building model
-     * @return JSON representation
+     * @return string representation
      */
-    json convertModelToJson(std::shared_ptr<BuildingModel> model);
+    std::string convertModelToString(std::shared_ptr<BuildingModel> model);
 
     /**
-     * Get geometry data for a specific entity
+     * Get basic entity information
      * @param entityId The entity ID
-     * @return JSON with geometry data
+     * @return basic info string
      */
-    json getEntityGeometry(const std::string& entityId);
+    std::string getEntityInfo(const std::string& entityId);
 
     /**
      * Get all entities of a specific type
      * @param ifcType The IFC type (e.g., "IfcWall", "IfcSlab")
-     * @return JSON array of entities
+     * @return count of entities
      */
-    json getEntitiesByType(const std::string& ifcType);
+    int getEntitiesByTypeCount(const std::string& ifcType);
 
     /**
-     * Get building hierarchy as JSON
-     * @return JSON tree structure
+     * Get building hierarchy as string
+     * @return hierarchy info
      */
-    json getBuildingHierarchy();
+    std::string getBuildingHierarchy();
 
 private:
     std::shared_ptr<BuildingModel> m_ifc_model;
@@ -63,28 +59,28 @@ private:
     std::shared_ptr<GeometryConverter> m_geometry_converter;
     
     // Cache for converted entities
-    std::map<std::string, json> m_entity_cache;
+    std::map<std::string, std::string> m_entity_cache;
     
     /**
-     * Convert an IFC object to JSON recursively
+     * Convert an IFC object to string recursively
      * @param obj The IFC object
      * @param visited Set of visited objects to avoid cycles
-     * @return JSON representation
+     * @return string representation
      */
-    json convertObjectToJson(std::shared_ptr<IFC4X3::IfcObjectDefinition> obj, 
+    std::string convertObjectToString(std::shared_ptr<IFC4X3::IfcObjectDefinition> obj, 
                             std::set<int>& visited);
 
     /**
-     * Extract geometry information for an entity
+     * Extract basic information for an entity
      * @param shapeData The shape data
-     * @return JSON with geometry information
+     * @return string with basic information
      */
-    json extractGeometry(std::shared_ptr<ProductShapeData> shapeData);
+    std::string extractBasicInfo(std::shared_ptr<ProductShapeData> shapeData);
 
     /**
-     * Convert properties to JSON
+     * Convert properties to string
      * @param obj The IFC object
-     * @return JSON with properties
+     * @return string with properties
      */
-    json extractProperties(std::shared_ptr<IFC4X3::IfcObjectDefinition> obj);
+    std::string extractProperties(std::shared_ptr<IFC4X3::IfcObjectDefinition> obj);
 };

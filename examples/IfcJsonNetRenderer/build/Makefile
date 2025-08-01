@@ -65,26 +65,6 @@ CMAKE_BINARY_DIR = /workspace/examples/IfcJsonNetRenderer/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target package
-package: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	/usr/bin/cpack --config ./CPackConfig.cmake
-.PHONY : package
-
-# Special rule for the target package
-package/fast: package
-.PHONY : package/fast
-
-# Special rule for the target package_source
-package_source:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /workspace/examples/IfcJsonNetRenderer/build/CPackSourceConfig.cmake
-.PHONY : package_source
-
-# Special rule for the target package_source
-package_source/fast: package_source
-.PHONY : package_source/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
@@ -194,257 +174,53 @@ IfcJsonNetRenderer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/build
 .PHONY : IfcJsonNetRenderer/fast
 
-#=============================================================================
-# Target rules for targets named uninstall
-
-# Build rule for target.
-uninstall: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
-.PHONY : uninstall
-
-# fast build rule for target.
-uninstall/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/crow-build/CMakeFiles/uninstall.dir/build.make _deps/crow-build/CMakeFiles/uninstall.dir/build
-.PHONY : uninstall/fast
-
-#=============================================================================
-# Target rules for targets named to_c_array
-
-# Build rule for target.
-to_c_array: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 to_c_array
-.PHONY : to_c_array
-
-# fast build rule for target.
-to_c_array/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/stdlib/CMakeFiles/to_c_array.dir/build.make _deps/jsonnet-build/stdlib/CMakeFiles/to_c_array.dir/build
-.PHONY : to_c_array/fast
-
-#=============================================================================
-# Target rules for targets named stdlib
-
-# Build rule for target.
-stdlib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stdlib
-.PHONY : stdlib
-
-# fast build rule for target.
-stdlib/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/stdlib/CMakeFiles/stdlib.dir/build.make _deps/jsonnet-build/stdlib/CMakeFiles/stdlib.dir/build
-.PHONY : stdlib/fast
-
-#=============================================================================
-# Target rules for targets named md5
-
-# Build rule for target.
-md5: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 md5
-.PHONY : md5
-
-# fast build rule for target.
-md5/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/third_party/md5/CMakeFiles/md5.dir/build.make _deps/jsonnet-build/third_party/md5/CMakeFiles/md5.dir/build
-.PHONY : md5/fast
-
-#=============================================================================
-# Target rules for targets named ryml
-
-# Build rule for target.
-ryml: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ryml
-.PHONY : ryml
-
-# fast build rule for target.
-ryml/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/ryml/CMakeFiles/ryml.dir/build.make _deps/jsonnet-build/ryml/CMakeFiles/ryml.dir/build
-.PHONY : ryml/fast
-
-#=============================================================================
-# Target rules for targets named c4core
-
-# Build rule for target.
-c4core: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 c4core
-.PHONY : c4core
-
-# fast build rule for target.
-c4core/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/ryml/subprojects/c4core/build/CMakeFiles/c4core.dir/build.make _deps/jsonnet-build/ryml/subprojects/c4core/build/CMakeFiles/c4core.dir/build
-.PHONY : c4core/fast
-
-#=============================================================================
-# Target rules for targets named libjsonnet
-
-# Build rule for target.
-libjsonnet: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libjsonnet
-.PHONY : libjsonnet
-
-# fast build rule for target.
-libjsonnet/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/core/CMakeFiles/libjsonnet.dir/build.make _deps/jsonnet-build/core/CMakeFiles/libjsonnet.dir/build
-.PHONY : libjsonnet/fast
-
-#=============================================================================
-# Target rules for targets named libjsonnet_static
-
-# Build rule for target.
-libjsonnet_static: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libjsonnet_static
-.PHONY : libjsonnet_static
-
-# fast build rule for target.
-libjsonnet_static/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/core/CMakeFiles/libjsonnet_static.dir/build.make _deps/jsonnet-build/core/CMakeFiles/libjsonnet_static.dir/build
-.PHONY : libjsonnet_static/fast
-
-#=============================================================================
-# Target rules for targets named libjsonnet++
-
-# Build rule for target.
-libjsonnet++: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libjsonnet++
-.PHONY : libjsonnet++
-
-# fast build rule for target.
-libjsonnet++/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/cpp/CMakeFiles/libjsonnet++.dir/build.make _deps/jsonnet-build/cpp/CMakeFiles/libjsonnet++.dir/build
-.PHONY : libjsonnet++/fast
-
-#=============================================================================
-# Target rules for targets named libjsonnet++_static
-
-# Build rule for target.
-libjsonnet++_static: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libjsonnet++_static
-.PHONY : libjsonnet++_static
-
-# fast build rule for target.
-libjsonnet++_static/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/cpp/CMakeFiles/libjsonnet++_static.dir/build.make _deps/jsonnet-build/cpp/CMakeFiles/libjsonnet++_static.dir/build
-.PHONY : libjsonnet++_static/fast
-
-#=============================================================================
-# Target rules for targets named jsonnet
-
-# Build rule for target.
-jsonnet: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 jsonnet
-.PHONY : jsonnet
-
-# fast build rule for target.
-jsonnet/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/cmd/CMakeFiles/jsonnet.dir/build.make _deps/jsonnet-build/cmd/CMakeFiles/jsonnet.dir/build
-.PHONY : jsonnet/fast
-
-#=============================================================================
-# Target rules for targets named jsonnetfmt
-
-# Build rule for target.
-jsonnetfmt: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 jsonnetfmt
-.PHONY : jsonnetfmt
-
-# fast build rule for target.
-jsonnetfmt/fast:
-	$(MAKE) $(MAKESILENT) -f _deps/jsonnet-build/cmd/CMakeFiles/jsonnetfmt.dir/build.make _deps/jsonnet-build/cmd/CMakeFiles/jsonnetfmt.dir/build
-.PHONY : jsonnetfmt/fast
-
-src/ifc_parser.o: src/ifc_parser.cpp.o
-.PHONY : src/ifc_parser.o
+src/ifc_parser_simple.o: src/ifc_parser_simple.cpp.o
+.PHONY : src/ifc_parser_simple.o
 
 # target to build an object file
-src/ifc_parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.o
-.PHONY : src/ifc_parser.cpp.o
+src/ifc_parser_simple.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.o
+.PHONY : src/ifc_parser_simple.cpp.o
 
-src/ifc_parser.i: src/ifc_parser.cpp.i
-.PHONY : src/ifc_parser.i
+src/ifc_parser_simple.i: src/ifc_parser_simple.cpp.i
+.PHONY : src/ifc_parser_simple.i
 
 # target to preprocess a source file
-src/ifc_parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.i
-.PHONY : src/ifc_parser.cpp.i
+src/ifc_parser_simple.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.i
+.PHONY : src/ifc_parser_simple.cpp.i
 
-src/ifc_parser.s: src/ifc_parser.cpp.s
-.PHONY : src/ifc_parser.s
+src/ifc_parser_simple.s: src/ifc_parser_simple.cpp.s
+.PHONY : src/ifc_parser_simple.s
 
 # target to generate assembly for a file
-src/ifc_parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser.cpp.s
-.PHONY : src/ifc_parser.cpp.s
+src/ifc_parser_simple.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/ifc_parser_simple.cpp.s
+.PHONY : src/ifc_parser_simple.cpp.s
 
-src/jsonnet_renderer.o: src/jsonnet_renderer.cpp.o
-.PHONY : src/jsonnet_renderer.o
+src/main_simple.o: src/main_simple.cpp.o
+.PHONY : src/main_simple.o
 
 # target to build an object file
-src/jsonnet_renderer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.o
-.PHONY : src/jsonnet_renderer.cpp.o
+src/main_simple.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.o
+.PHONY : src/main_simple.cpp.o
 
-src/jsonnet_renderer.i: src/jsonnet_renderer.cpp.i
-.PHONY : src/jsonnet_renderer.i
-
-# target to preprocess a source file
-src/jsonnet_renderer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.i
-.PHONY : src/jsonnet_renderer.cpp.i
-
-src/jsonnet_renderer.s: src/jsonnet_renderer.cpp.s
-.PHONY : src/jsonnet_renderer.s
-
-# target to generate assembly for a file
-src/jsonnet_renderer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/jsonnet_renderer.cpp.s
-.PHONY : src/jsonnet_renderer.cpp.s
-
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
-
-# target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
-
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+src/main_simple.i: src/main_simple.cpp.i
+.PHONY : src/main_simple.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/main_simple.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.i
+.PHONY : src/main_simple.cpp.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
-
-src/rest_endpoints.o: src/rest_endpoints.cpp.o
-.PHONY : src/rest_endpoints.o
-
-# target to build an object file
-src/rest_endpoints.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.o
-.PHONY : src/rest_endpoints.cpp.o
-
-src/rest_endpoints.i: src/rest_endpoints.cpp.i
-.PHONY : src/rest_endpoints.i
-
-# target to preprocess a source file
-src/rest_endpoints.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.i
-.PHONY : src/rest_endpoints.cpp.i
-
-src/rest_endpoints.s: src/rest_endpoints.cpp.s
-.PHONY : src/rest_endpoints.s
+src/main_simple.s: src/main_simple.cpp.s
+.PHONY : src/main_simple.s
 
 # target to generate assembly for a file
-src/rest_endpoints.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/rest_endpoints.cpp.s
-.PHONY : src/rest_endpoints.cpp.s
+src/main_simple.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IfcJsonNetRenderer.dir/build.make CMakeFiles/IfcJsonNetRenderer.dir/src/main_simple.cpp.s
+.PHONY : src/main_simple.cpp.s
 
 # Help Target
 help:
@@ -457,34 +233,14 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
-	@echo "... package"
-	@echo "... package_source"
 	@echo "... rebuild_cache"
-	@echo "... stdlib"
-	@echo "... uninstall"
 	@echo "... IfcJsonNetRenderer"
-	@echo "... c4core"
-	@echo "... jsonnet"
-	@echo "... jsonnetfmt"
-	@echo "... libjsonnet"
-	@echo "... libjsonnet++"
-	@echo "... libjsonnet++_static"
-	@echo "... libjsonnet_static"
-	@echo "... md5"
-	@echo "... ryml"
-	@echo "... to_c_array"
-	@echo "... src/ifc_parser.o"
-	@echo "... src/ifc_parser.i"
-	@echo "... src/ifc_parser.s"
-	@echo "... src/jsonnet_renderer.o"
-	@echo "... src/jsonnet_renderer.i"
-	@echo "... src/jsonnet_renderer.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
-	@echo "... src/rest_endpoints.o"
-	@echo "... src/rest_endpoints.i"
-	@echo "... src/rest_endpoints.s"
+	@echo "... src/ifc_parser_simple.o"
+	@echo "... src/ifc_parser_simple.i"
+	@echo "... src/ifc_parser_simple.s"
+	@echo "... src/main_simple.o"
+	@echo "... src/main_simple.i"
+	@echo "... src/main_simple.s"
 .PHONY : help
 
 
